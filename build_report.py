@@ -398,9 +398,11 @@ story.append(h("7. Challenges Encountered"))
 story.append(p(
     "<b>Sparse reward and low random-walk success rate.</b> The 8×8 map contains 10 holes "
     "arranged in two barrier clusters. A purely random agent reaches the goal in fewer than "
-    "0.4% of episodes (measured empirically over 100,000 trials). With the standard reward "
-    "of 0 for holes and only 10,000 training episodes, the agent never discovers the goal "
-    "and the Q-table remains at its initial value of 0, producing random behaviour."
+    "0.4% of episodes (measured empirically over 100,000 trials). With hole reward 0 and "
+    "Q-table initialised to 0, learning is unreliable: depending on the random seed, the agent "
+    "may never reach the goal during 10,000 episodes, leaving the Q-table at zero and producing "
+    "poor greedy behaviour. This motivated reward shaping (hole = −1) and optimistic "
+    "initialisation (+1)."
 ))
 story.append(p(
     "<b>Epsilon decay calibration.</b> An initial decay rate of 0.995 caused ε to reach "
